@@ -36,7 +36,9 @@ A comprehensive system designed to manage pharmacy operations efficiently. This 
     python manage.py runserver
     ```
 2. Open your browser and go to `http://localhost:8000` to access the system.
-.
+
+> **Note:** There are no apps on this project yet.
+
 
 ### Contributing
 
@@ -51,6 +53,6 @@ A comprehensive system designed to manage pharmacy operations efficiently. This 
     ```
 4. Push to the branch:
     ```bash
-    git push origin feature-branch
+    git push origin <feature-branch>
     ```
 5. Open a pull request.
