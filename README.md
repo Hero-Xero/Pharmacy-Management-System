@@ -46,7 +46,7 @@ A comprehensive system designed to manage pharmacy operations efficiently. This 
 1. Fork the repository.
 2. Create a new branch:
     ```bash
-    git checkout -b feature-branch
+    git checkout -b <feature-branch> 
     ```
 3. Make your changes and commit them:
     ```bash
