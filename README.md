@@ -37,7 +37,8 @@ A comprehensive system designed to manage pharmacy operations efficiently. This 
     ```
 2. Open your browser and go to `http://localhost:8000` to access the system.
 
-> **Note:** There are no apps on this project yet.
+
+📌 **Note:** There are no apps on this project yet.
 
 
 ### Contributing
