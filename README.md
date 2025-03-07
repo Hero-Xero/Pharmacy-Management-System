@@ -13,7 +13,6 @@ A comprehensive system designed to manage pharmacy operations efficiently. This 
     ```bash
     cd Pharmacy-Management-System
     ```
-    ```
 4. Activate the virtual environment:
     - On Windows:
         ```bash
