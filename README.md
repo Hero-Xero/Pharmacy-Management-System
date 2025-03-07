@@ -14,14 +14,19 @@ A comprehensive system designed to manage pharmacy operations efficiently. This 
     cd Pharmacy-Management-System
     ```
 4. Activate the virtual environment:
-    - On Windows:
-        ```bash
-        .\env\Scripts\activate
-        ```
+    - On Windows 
+        - Command Prompt:
+            ```bash
+            .\venv\Scripts\activate
+            ```
+        - PowerShell:
+            ```powershell
+            .\venv\Scripts\Activate.ps1
+            ```
         
     - On macOS and Linux:
         ```bash
-        source env/bin/activate
+        source venv/bin/activate
         ```
 
 ### Usage
@@ -42,7 +47,7 @@ A comprehensive system designed to manage pharmacy operations efficiently. This 
     ```
 3. Make your changes and commit them:
     ```bash
-    git commit -m "Add new feature"
+    git commit -m "Add new feature" 
     ```
 4. Push to the branch:
     ```bash
