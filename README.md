@@ -31,7 +31,7 @@ A comprehensive system designed to manage pharmacy operations efficiently. This 
 
             ```powershell
             .\venv\Scripts\Activate.ps1
-            ```bash
+            ```
 
     - On macOS and Linux:
 
