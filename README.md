@@ -71,3 +71,15 @@ A comprehensive system designed to manage pharmacy operations efficiently. This 
     ```
 
 5. Open a pull request.
+
+# Sprints
+
+## **Sprint 1: 2025-03-08 to 2025-03-14**
+
+### **Assigned Tasks**
+
+- [ ]  **Assem** → Create the **database schema** (only ERD, no code).
+- [ ]  **Omar** → Implement **login & registration** logic in Django.
+- [ ]  **Habiba** → Research **4 to 10 vulnerabilities** in Django that developers might introduce.
+- [ ]  **Sama** → **Design** the **user interface** on paper (not in code).
+- [ ]  **Ghada** → **Design** the **admin panel/dashboard** with a simple layout for the admin.
