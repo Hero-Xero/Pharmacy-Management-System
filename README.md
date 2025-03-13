@@ -78,8 +78,8 @@ A comprehensive system designed to manage pharmacy operations efficiently. This 
 
 #### **Assigned Tasks**
 
-- [*]  **Assem** → Create the **database schema** (only ERD, no code).
-- [*]  **Omar** → Implement **login & registration** logic in Django.
-- [*]  **Habiba** → Research **4 to 10 vulnerabilities** in Django that developers might introduce.
-- [*]  **Sama** → **Design** the **user interface** on paper (not in code).
+- [x]  **Assem** → Create the **database schema** (only ERD, no code).
+- [x]  **Omar** → Implement **login & registration** logic in Django.
+- [x]  **Habiba** → Research **4 to 10 vulnerabilities** in Django that developers might introduce.
+- [x]  **Sama** → **Design** the **user interface** on paper (not in code).
 - [ ]  **Ghada** → **Design** the **admin panel/dashboard** with a simple layout for the admin.
