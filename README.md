@@ -82,4 +82,4 @@ A comprehensive system designed to manage pharmacy operations efficiently. This 
 - [x]  **Omar** → Implement **login & registration** logic in Django.
 - [x]  **Habiba** → Research **4 to 10 vulnerabilities** in Django that developers might introduce.
 - [x]  **Sama** → **Design** the **user interface** on paper (not in code).
-- [ ]  **Ghada** → **Design** the **admin panel/dashboard** with a simple layout for the admin.
+- [x]  **Ghada** → **Design** the **admin panel/dashboard** with a simple layout for the admin.
