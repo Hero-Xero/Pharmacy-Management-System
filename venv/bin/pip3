@@ -1,4 +1,4 @@
-#!/home/hero/Pharmacy-Management-System/venv/bin/python
+#!/home/hero/Pharmacy-Management-System/venv/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -67,3 +67,10 @@ class Client(models.Model):
     def __str__(self):
         return f"Username:{self.user}, add:{self.address} date:{self.date_of_birth} phone:{self.phone_number} city:{self.city} gover:{self.governerate} ({self.first_name} {self.last_name}), date_joined:{self.date_joined}, last_login:{self.last_login}"
 
+
+class Categories(models.Model):
+    category = models.CharField(max_length=10, unique=True, blank=False, null=False)
+    
+    def __str__(self):
+        return self.category
+    
