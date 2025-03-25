@@ -2,12 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
-from .models import User, Client  
+from .models import * 
 from .forms import RegistrationForm
 
 def index(request):
-    form = RegistrationForm()
-    return render(request, 'pharma/index.html', {'form': form})
+    return render(request, 'pharma/index.html', {'categories': Categories.objects.all()})
 
 def login_view(request):
     if request.method == 'POST':
@@ -31,15 +30,16 @@ def client_register(request):
                 user = User.objects.create_user(
                     username=form.cleaned_data['username'].lower(),
                     email=form.cleaned_data['email'].lower(),
-                    password=form.cleaned_data['password']
+                    password=form.cleaned_data['password'],
+                    first_name=form.cleaned_data['first_name'],
+                    last_name=form.cleaned_data['last_name']
+                    
                 )
                 user.role = 'client'
                 user.save()
 
                 Client.objects.create(
                     user=user, 
-                    first_name=form.cleaned_data['first_name'],
-                    last_name=form.cleaned_data['last_name'],
                     date_of_birth=form.cleaned_data['date_of_birth'],
                     phone_number=form.cleaned_data['phone_number'],
                     address=form.cleaned_data['address'],
@@ -56,13 +56,21 @@ def client_register(request):
                     "form": form,
                     "error": "Username or email already exists. Please try again."
                 })
-        return render(request, 'pharma/index.html', {"form": form})  
+        return render(request, 'pharma/register.html', {"form": form})  
 
-    return render(request, 'pharma/index.html', {"form": RegistrationForm()})
+    return render(request, 'pharma/register.html', {"form": RegistrationForm()})
 
 
 
 def users(request):
     return render(request, 'pharma/users.html', {
         'clients': Client.objects.all(),
+    })
+    
+    
+def category(request, category_name):
+    category = Categories.objects.get(category=category_name)
+    return render(request, 'pharma/category.html', {
+        'category': category,
+        'products': Product.objects.filter(category=category)
     })

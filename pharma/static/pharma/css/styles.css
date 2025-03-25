@@ -1,91 +1,72 @@
-/* General styles */
+/* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #f4f4f9;
-    color: #333;
+    background-color: #f4f4f4;
 }
 
-/* Header */
+/* Header Styles */
 header {
-    background: linear-gradient(135deg, #007bff, #0056b3);
+    background-color: #4CAF50;
     color: white;
+    padding: 10px 0;
     text-align: center;
-    padding: 20px;
-    font-size: 24px;
-    font-weight: bold;
 }
 
-/* Main container */
-main {
-    width: 90%;
-    max-width: 500px;
-    margin: 40px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Form Styling */
-form {
+/* Navigation Styles */
+nav {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    background-color: #333;
 }
 
-form p {
-    margin-bottom: 15px;
-}
-
-input, select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border 0.3s ease-in-out;
-}
-
-input:focus, select:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
-}
-
-/* Button */
-button {
-    background: #007bff;
+nav a {
     color: white;
-    border: none;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-/* Error messages */
-p[style="color: red;"] {
-    background: #ffdddd;
-    color: #b30000 !important;
-    padding: 10px;
-    border-left: 5px solid #b30000;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-/* Footer */
-footer {
+    padding: 14px 20px;
+    text-decoration: none;
     text-align: center;
-    padding: 15px;
-    margin-top: 20px;
-    background: #333;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Main Content Styles */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* Sidebar Styles */
+aside {
+    flex: 1;
+    min-width: 200px;
+    background-color: #f1f1f1;
+    padding: 20px;
+    margin: 10px;
+}
+
+/* Article Styles */
+article {
+    flex: 3;
+    min-width: 300px;
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
     color: white;
-    font-size: 14px;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }

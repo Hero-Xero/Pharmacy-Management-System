@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Management System</title>
+    <link rel="stylesheet" href="{% static 'pharma/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Pharmacy Management System</h1>
+    </header>
+    <main>
+        <p>This is the main page of the Pharmacy Management System.</p>
+        <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}  
+            <button type="submit">Register</button>
+        </form>
+            </main>
+            {% if form.errors %}
+            <p style="color: red;">Please correct the error{{ form.errors|pluralize }} below.</p>
+        {% endif %}
+
+        {% if error %}
+        <h2>{{ error }}</h2>
+    {% endif %}
+    <footer>
+        <p>&copy; 2025 Pharmacy Management System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

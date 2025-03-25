@@ -1,0 +1,47 @@
+{% extends 'pharma/layout.html' %}
+
+{% block content %}
+<div class="category-container">
+    <h1>Product Categories</h1>
+    <div class="products">
+        {% for product in products %}
+            <div class="product">
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+                <p>Image: ${{ product.image }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+<style>
+.category-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.product p {
+    font-size: 1em;
+    color: #666;
+}
+</style></div>
