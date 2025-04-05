@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %} {{ category_name }} {% endblock %}
+
+{% block main %}
+
+    <!-- header of Category -->
+    <div class="category-header text-center py-5">
+        <h1 class="display-4">{{ category_name }}</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <!-- Filter and Sort Section -->
+            <div class="col-lg-3">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Sort & Filter</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Price Filter -->
+                        <h6>Filter By Price</h6>
+                        <div class="price-slider">
+                            <input type="range" class="form-range" min="100" max="2000" step="10" id="minPriceRange" value="100" oninput="updatePrice()">
+                            <input type="range" class="form-range" min="100" max="2000" step="10" id="maxPriceRange" value="2000" oninput="updatePrice()">
+                        </div>
+                        <p>Selected Range: <span id="priceValue">100 - 2000</span> EGP</p>
+
+                        <!-- Sort By -->
+                        <label for="sort-by" class="form-label"><h6>Sort By</h6></label>
+                        <select class="form-select mb-3" id="sort-by">
+                            <option>Featured</option>
+                            <option>Best selling</option>
+                            <option>Alphabetically, A-Z</option>
+                            <option>Alphabetically, Z-A</option>
+                            <option>Price, low to high</option>
+                            <option>Price, high to low</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div class="col-lg-9">
+                <!-- Product 1 -->
+                <div class="card mb-4">
+                    <img src="images/cerave-eye-repair-cream-14ml-137958.webp" class="card-img-top" alt="Cerave">
+                    <div class="card-body">
+                        <h5 class="card-title">Cerave</h5>
+                        <p class="card-text">Cerave Eye Repair Cream - 14ml</p>
+                        <p class="price">EGP 454.09</p>
+                        <button class="btn btn-primary"><i class="fas fa-shopping-cart"></i> ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

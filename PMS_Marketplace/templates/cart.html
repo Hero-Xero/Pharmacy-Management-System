@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}Cart{% endblock %}
+
+{% block main %}
+    <!-- Cart Header -->
+    <div class="cart-header text-center my-5">
+        <h1 class="display-4">Shopping Cart</h1>
+        <p class="lead">Your selected items are waiting for you</p>
+    </div>
+
+    <!-- Cart Container -->
+    <div class="container cart-container">
+        <div class="row">
+            <!-- Cart Items -->
+            <div class="col-lg-8">
+                <div id="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="col-lg-4">
+                <div class="card cart-summary p-4">
+                    <h3 class="h4 mb-4">Order Summary</h3>
+                    <div class="summary-item d-flex justify-content-between mb-3">
+                        <span>Subtotal</span>
+                        <span id="subtotal">EGP 0.00</span>
+                    </div>
+                    <div class="summary-item d-flex justify-content-between mb-3">
+                        <span>Shipping</span>
+                        <span id="shipping">EGP 0.00</span>
+                    </div>
+                    <div class="summary-item total d-flex justify-content-between mb-4">
+                        <span><strong>Total</strong></span>
+                        <span id="total">EGP 0.00</span>
+                    </div>
+                    <button class="btn btn-primary w-100" onclick="proceedToCheckout()">
+                        <i class="fas fa-lock"></i> Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Empty Cart Message -->
+    <div id="empty-cart-message" class="text-center my-5">
+        <div class="mb-3">
+            <i class="fas fa-shopping-bag fa-5x"></i>
+        </div>
+        <h2 class="h4 mb-3">Your cart is empty</h2>
+        <p>Looks like you haven't added any items to your cart yet.</p>
+        <a href="/" class="btn btn-link mt-4">Continue Shopping</a>
+    </div>
+
+    <script src="{% static 'assets/js/cart.js' %}"></script>
+{% endblock %}
