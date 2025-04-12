@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/hero/Pharmacy-Management-System/venv
+set -gx VIRTUAL_ENV /home/assem/Documents/Github/pharmacy-management-system/venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
