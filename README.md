@@ -53,5 +53,5 @@ A comprehensive system designed to streamline pharmacy operations efficiently, e
 - [x] Assem → Create the database schema (only ERD, no code).
 - [x] Omar → Implement login & registration logic in Django.
 - [x] Habiba → Research 4 to 10 vulnerabilities in Django that developers might introduce.
-- [x] Sama → Design the user interface on paper (not in code).
+- [x] Sama → Sama Ashtr wa7daa.
 - [x] Ghada → Design the admin panel/dashboard with a simple layout for the admin.
