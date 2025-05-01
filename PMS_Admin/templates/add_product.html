@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="{% static 'admin/css/admin_styles.css' %}">
+</head>
+<body>
+
+<div class="header">
+    <img src="{% static 'admin/images/logo.png' %}" alt="Logo" class="logo">
+    <div>
+        <h1>Add New Category</h1>
+        <h2>Enter category name and details</h2>
+    </div>
+</div>
+
+<div class="box report">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-wrapper">
+            {{ form.as_p }}
+        </div>
+        <button type="submit">Save Product</button>
+    </form>
+</div>
+
+</body>
+</html>

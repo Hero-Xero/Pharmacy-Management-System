@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# AUTH_USER_MODEL = 'PMS_Admin.User'
 
 # Application definition
 
@@ -40,8 +41,13 @@ INSTALLED_APPS = [
     
     # Other apps...
     'PMS_Admin',
-    'PMS_Marketplace'
+    'PMS_Marketplace',
+    'PMS_accounts',
+
 ]
+
+AUTH_USER_MODEL = 'PMS_accounts.User'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

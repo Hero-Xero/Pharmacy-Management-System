@@ -1,0 +1,148 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f2f5;
+    color: #333;
+  }
+  
+ 
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    height: 60px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+  }
+  
+  h2 {
+    font-size: 18px;
+    color: #7f8c8d;
+    margin: 0;
+  }
+  
+  
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .box {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s;
+  }
+  
+  .box:hover {
+    transform: translateY(-4px);
+  }
+  
+  .box img {
+    width: 90px;
+    margin-bottom: 5px;
+  }
+  
+  .box strong {
+    font-size: 24px;
+    display: block;
+    color: #2980b9;
+  }
+  
+  .label {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    margin-top: 7px;
+    color: #333;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: justify-all;
+  }
+  
+ 
+  .report {
+    grid-column: span 2;
+    background-color: #f9f9f9;
+    border-left: 6px solid #3498db;
+  }
+  
+  .report h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .report table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .report {
+    grid-column: span 2;
+    background-color: #f9f9f9;
+    border-left: 6px solid #3498db;
+    text-align: center; /* Center the text inside the report */
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    padding: 20px;
+  }
+  .report table,
+.report th,
+.report td {
+  text-align: center;
+}
+.report table,
+.report th,
+.report td {
+  text-align: center;
+}
+  
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+  
+  button {
+    background: linear-gradient(to right, #3498db, #6dd5fa);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .stats .box img,
+.buttons img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;  
+}
+  
+  button:hover {
+    background: linear-gradient(to right, #2980b9, #56ccf2);
+    transform: scale(1.05);
+  }

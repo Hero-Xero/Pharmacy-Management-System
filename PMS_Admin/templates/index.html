@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- <link rel="stylesheet" href="{% static 'style.css' %}"/> -->
+</head>
+<body>
+
+ 
+  <div class="header">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUT4NhltYojT7X27fXXc4G_B4uljKUogHGZg&s" alt="Logo" class="logo">
+    <div>
+      <h1>Dashboard</h1>
+      <h2>Home</h2>
+    </div>
+  </div>
+  <hr>
+
+  
+  <div class="stats">
+    <div class="box">
+      <img src="images/total customer.jpeg">
+      <strong>26</strong>
+      <span class="label">Total Customer</span>
+    </div>
+    <div class="box">
+      <img src="images/total supplier.jpeg">
+      <strong>14</strong>
+      <span class="label">Total Supplier</span>
+    </div>
+    <div class="box">
+      <img src="images/total medicine.jpeg">
+      <strong>12</strong>
+      <span class="label">Total Medicine</span>
+    </div>
+    <div class="box">
+      <img src="images/out of stock.jpeg">
+      <strong>24</strong>
+      <span class="label">Out Of Stock</span>
+    </div>
+    <div class="box">
+      <img src="images/expired.jpeg">
+      <strong>1</strong>
+      <span class="label">Expired</span>
+    </div>
+    <div class="box">
+      <img src="images/downlnew invoice.jpeg">
+      <strong>10</strong>
+      <span class="label">Total Invoice</span>
+    </div>
+    <div class="box report">
+      <h3>Today's Report</h3>
+      <table>
+        <tr><td>Total Sales</td><td id="sales">₹0</td></tr>
+        <tr><td>Total Purchase</td><td id="purchase">₹0</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <hr>
+
+  
+  <div class="buttons">
+    <button onclick="action('invoice')"><img src="images/downlnew invoice.jpeg">Create New Invoice</button>
+    <button onclick="action('add_customer')"><img src="images/ggg.jpeg">Add New Customer</button>
+    <button onclick="action('add_medicine')"><img src="images/add new medicine.jpeg">Add New Medicine</button>
+    <button onclick="action('add_supplier')"><img src="images/new supplier.png">Add New Supplier</button>
+    <button onclick="action('add_purchase')"><img src="images/new purchase.png">Add New Purchase</button>
+    <button onclick="action('sales_report')"><img src="images/sales report.jpeg">Sales Report</button>
+    <button onclick="action('sales_purchase')"><img src="images/sales purchase.jpeg">Sales Purchase</button>
+  </div>
+
+  
+  <script src="script.js"></script>
+</body>
+</html>
