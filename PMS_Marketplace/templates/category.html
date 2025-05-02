@@ -1,55 +1,97 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% load static %} {% block title %}Category -
+{{category_name }} {%endblock %} {% block content %}
 
-{% block content %}
-<script src="cart.js"></script>
-<script src="category.js"></script>
-
+<script src="{% static 'js/filters.js' %}"></script>
 
 <div class="category-header">
-  <h1>Health & Skin Care</h1>
+  <h1>{{ category_name }}</h1>
 </div>
 
-
-<div class="category-container">
+<div class="category-page-container">
   <!-- Filter and Sort Section -->
   <div class="filter-section">
-      <div class="filter-title">Sort & Filter</div>
+    <div class="filter-title">Sort & Filter</div>
 
-      <!-- Price Filter -->
-      <h5>Filter By Price</h5>
-      <div class="price-slider">
-          <input type="range" class="form-range" min="100" max="2000" step="10" id="minPriceRange" value="100" oninput="updatePrice()">
-          <input type="range" class="form-range" min="100" max="2000" step="10" id="maxPriceRange" value="2000" oninput="updatePrice()">
+    <!-- Price Filter -->
+    <h5>Filter By Price</h5>
+    <div class="price-slider">
+      <input
+        type="range"
+        class="form-range"
+        min="100"
+        max="2000"
+        step="10"
+        id="minPriceRange"
+        value="100"
+        oninput="updatePrice()"
+      />
+      <input
+        type="range"
+        class="form-range"
+        min="100"
+        max="2000"
+        step="10"
+        id="maxPriceRange"
+        value="2000"
+        oninput="updatePrice()"
+      />
+    </div>
+    <p>Selected Range: <span id="priceValue">100 - 2000</span> EGP</p>
+
+    <!-- Sort By -->
+    <label for="sort-by" class="form-label">
+      <h5>Sort By</h5>
+    </label>
+    <select class="form-select mb-3" id="sort-by">
+      <option>Featured</option>
+      <option>Best selling</option>
+      <option>Alphabetically, A-Z</option>
+      <option>Alphabetically, Z-A</option>
+      <option>Price, low to high</option>
+      <option>Price, high to low</option>
+    </select>
+  </div>
+
+  <!-- Products Section -->
+  <div class="products-container">
+    {# Example static product - replace with a loop when dynamic data is used #}
+    <div class="card">
+      <img
+        src="{% static 'images/clinique-dramatically-different-moisturizing-gel-with-pump-125ml-409463.webp' %}"
+        class="card-img-top"
+        alt="Clinique Moisturizer"
+      />
+      <div class="card-body">
+        <h5 class="card-title">Clinique</h5>
+        <p class="card-text">
+          Clinique Dramatically Different Moisturizing Gel With Pump - 125ml
+        </p>
+        <p class="price">EGP 1,590.00</p>
+        <button class="add-to-Cart-btn">
+          <i class="fas fa-shopping-cart"></i> ADD TO CART
+        </button>
       </div>
-      <p>Selected Range: <span id="priceValue">100 - 2000</span> EGP</p>
+    </div>
 
-      <!-- Sort By -->
-      <label for="sort-by" class="form-label"> <h5>Sort By</h5></label>
-      <select class="form-select mb-3" id="sort-by">
-          <option>Featured</option>
-          <option>Best selling</option>
-          <option>Alphabetically, A-Z</option>
-          <option>Alphabetically, Z-A</option>
-          <option>Price, low to high</option>
-          <option>Price, high to low</option>
-      </select>
+    {# Uncomment and use this structure to loop over real product data #} {#
+    {%for product in products %}
+    <div class="card">
+      <img
+        src="{{ product.image.url }}"
+        class="card-img-top"
+        alt="{{ product.name }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ product.brand }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p class="price">EGP {{ product.price }}</p>
+        <button class="add-to-Cart-btn">
+          <i class="fas fa-shopping-cart"></i> ADD TO CART
+        </button>
+      </div>
+    </div>
+    {% endfor %} #}
   </div>
 </div>
-
-
-<div class="products-container">
-<div class="card">
-  <img src="images/clinique-dramatically-different-moisturizing-gel-with-pump-125ml-409463.webp" class="card-img-top" alt="La Roche">
-  <div class="card-body">
-      <h5 class="card-title">Clinique</h5>
-      <p class="card-text">Clinique Dramatically Different Moisturizing Gel With Pump - 125ml</p>
-      <p class="price">EGP 1,590.00</p>
-      <button class="add-to-Cart-btn"><i class="fas fa-shopping-cart"></i> ADD TO CART</button>
-  </div>
-</div>
-</div>
-</div>
-
-
 
 {% endblock %}

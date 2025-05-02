@@ -1,16 +1,7 @@
 # marketplace/models.py
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
-# Custom User Model
-class User(AbstractUser):
-    is_customer = models.BooleanField(default=True)
-    is_admin_user = models.BooleanField(default=False)
-    phone_number = models.CharField(max_length=15, blank=True)
-
-    def __str__(self):
-        return self.username
-
+from PMS_Accounts.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=255)

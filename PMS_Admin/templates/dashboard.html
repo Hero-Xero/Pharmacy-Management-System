@@ -1,0 +1,84 @@
+{% extends "layout.html" %} {% load static %} {% block title %}Admin Dashboard
+{%endblock %} {% block content %}
+<div
+  class="stats"
+  style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0"
+>
+  <div class="box">
+    <img src="{% static 'images/total_customer.jpeg' %}" alt="Total Customer" />
+    <strong>26</strong>
+    <span class="label">Total Customer</span>
+  </div>
+  <div class="box">
+    <img src="{% static 'images/total_supplier.jpeg' %}" alt="Total Supplier" />
+    <strong>14</strong>
+    <span class="label">Total Supplier</span>
+  </div>
+  <div class="box">
+    <img src="{% static 'images/total_medicine.jpeg' %}" alt="Total Medicine" />
+    <strong>12</strong>
+    <span class="label">Total Medicine</span>
+  </div>
+  <div class="box">
+    <img src="{% static 'images/out_of_stock.jpeg' %}" alt="Out Of Stock" />
+    <strong>24</strong>
+    <span class="label">Out Of Stock</span>
+  </div>
+  <div class="box">
+    <img src="{% static 'images/expired.jpeg' %}" alt="Expired" />
+    <strong>1</strong>
+    <span class="label">Expired</span>
+  </div>
+  <div class="box">
+    <img
+      src="{% static 'images/downlnew_invoice.jpeg' %}"
+      alt="Total Invoice"
+    />
+    <strong>10</strong>
+    <span class="label">Total Invoice</span>
+  </div>
+
+  <div class="box report" style="flex-basis: 100%">
+    <h3>Today's Report</h3>
+    <table>
+      <tr>
+        <td>Total Sales</td>
+        <td id="sales">₹0</td>
+      </tr>
+      <tr>
+        <td>Total Purchase</td>
+        <td id="purchase">₹0</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<hr />
+
+<div
+  class="buttons"
+  style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0"
+>
+  <button onclick="action('invoice')">
+    <img src="{% static 'images/downlnew_invoice.jpeg' %}" />Create New Invoice
+  </button>
+  <button onclick="action('add_customer')">
+    <img src="{% static 'images/ggg.jpeg' %}" />Add New Customer
+  </button>
+  <button onclick="action('add_medicine')">
+    <img src="{% static 'images/add_new_medicine.jpeg' %}" />Add New Medicine
+  </button>
+  <button onclick="action('add_supplier')">
+    <img src="{% static 'images/new_supplier.png' %}" />Add New Supplier
+  </button>
+  <button onclick="action('add_purchase')">
+    <img src="{% static 'images/new_purchase.png' %}" />Add New Purchase
+  </button>
+  <button onclick="action('sales_report')">
+    <img src="{% static 'images/sales_report.jpeg' %}" />Sales Report
+  </button>
+  <button onclick="action('sales_purchase')">
+    <img src="{% static 'images/sales_purchase.jpeg' %}" />Sales Purchase
+  </button>
+</div>
+{% endblock %}

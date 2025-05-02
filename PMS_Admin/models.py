@@ -1,6 +1,6 @@
 # admin_panel/admin.py
 from django.contrib import admin
-from marketplace.models import Category, Product, User, Order
+from PMS_Marketplace.models import Category, Product, User, Order
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
