@@ -40,13 +40,13 @@
             <i class="fas fa-user"></i>
             <span>Logout</span>
           </a>
+          <a href="{% url 'dashboard:home' %}" class="login-btn">Dashboard</a>
           {% else %}
           <a href="{% url 'login' %}" class="login-btn">
             <i class="fas fa-user"></i>
             <span>Login</span>
           </a>
           {% endif %}
-          <a href="{% url 'dashboard:home' %}" class="login-btn">Dashboard</a>
         </div>
       </div>
     </nav>
