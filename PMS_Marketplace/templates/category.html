@@ -1,5 +1,6 @@
-{% extends "layout.html" %} {% load static %} {% block title %} Category - 
-{{category_name }} {% endblock %} {% block content %}
+{% extends "layout.html" %} {% load static %} {% block title %}Category -
+{{category_name}}{% endblock %} {% block content %}
+
 <script src="{% static 'js/filters.js' %}"></script>
 
 <div class="category-header">
@@ -62,9 +63,18 @@
         <h5 class="card-title">{{ product.name }}</h5>
         <p class="card-text">{{ product.description }}</p>
         <p class="price">EGP {{ product.price }}</p>
-        <form method="POST">
+
+        <form
+          method="POST"
+          action="{% url 'marketplace:add_item' product.id %}"
+        >
           {% csrf_token %}
           <input type="hidden" name="product_id" value="{{ product.id }}" />
+          <input
+            type="hidden"
+            name="category_name"
+            value="{{ category_name|lower }}"
+          />
           <button class="add-to-Cart-btn">
             <i class="fas fa-shopping-cart"></i> ADD TO CART
           </button>
@@ -76,4 +86,5 @@
     {% endfor %}
   </div>
 </div>
+
 {% endblock %}

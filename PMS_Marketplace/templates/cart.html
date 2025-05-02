@@ -1,5 +1,5 @@
-{% extends "layout.html" %} {% block title %}Shopping Cart{% endblock %} {%block
-content %}
+{% extends "layout.html" %} {% block title %}Shopping Cart{% endblock %} 
+{% block content %}
 <!-- Cart Header -->
 <div class="cart-header">
   <h1>Shopping Cart</h1>
@@ -11,7 +11,38 @@ content %}
   <div class="row">
     <!-- Cart Items -->
     <div class="col-lg-8">
-      <div id="cart-items"></div>
+      <div id="cart-items">
+        {% if cart_items %} {% for item in cart_items %}
+        <div class="cart-item">
+          <img
+            src="{{ item.product.image_url }}"
+            alt="{{ item.product.name }}"
+          />
+          <div class="cart-item-details">
+            <h5>{{ item.product.name }}</h5>
+            <p>{{ item.product.description }}</p>
+            <p>Price: EGP {{ item.product.price|floatformat:2 }}</p>
+            <form
+              method="POST"
+              action="{% url 'marketplace:update_cart_item' item.id %}"
+            >
+              {% csrf_token %}
+              <label for="quantity">Quantity:</label>
+              <input
+                type="number"
+                name="quantity"
+                min="1"
+                value="{{ item.quantity }}"
+              />
+              <button type="submit">Update</button>
+            </form>
+            <p>Total: EGP {{ item.total_price }}</p>          
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <p>Your cart is empty.</p>
+        {% endif %}
+      </div>
     </div>
 
     <!-- Cart Summary -->
@@ -20,17 +51,20 @@ content %}
         <h3>Order Summary</h3>
         <div class="summary-item">
           <span>Subtotal</span>
-          <span id="subtotal">EGP 0.00</span>
+          <span id="subtotal">EGP {{ subtotal }}</span>
         </div>
         <div class="summary-item">
           <span>Shipping</span>
-          <span id="shipping">EGP 0.00</span>
+          <span id="shipping">EGP {{ shipping }}</span>
         </div>
         <div class="summary-item total">
           <span>Total</span>
-          <span id="total">EGP 0.00</span>
+          <span id="total">EGP {{ total }}</span>
         </div>
-        <button class="checkout-btn" onclick="proceedToCheckout()">
+        <button
+          class="checkout-btn"
+          onclick="window.location.href='{% url 'marketplace:checkout' %}'"
+        >
           <i class="fas fa-lock"></i> Proceed to Checkout
         </button>
       </div>
@@ -39,7 +73,11 @@ content %}
 </div>
 
 <!-- Empty Cart Message -->
-<div id="empty-cart-message" class="empty-cart-message">
+<div
+  id="empty-cart-message"
+  class="empty-cart-message"
+  style="display: {% if cart_items %} none {% else %} block {% endif %}"
+>
   <div class="empty-cart-icon">
     <i class="fas fa-shopping-bag"></i>
   </div>
@@ -59,7 +97,9 @@ content %}
       <span>Secure Payment</span>
     </div>
   </div>
-  <a href="category.html" class="continue-shopping-btn"> Continue Shopping </a>
+  <a href="{% url 'marketplace:home' %}" class="continue-shopping-btn">
+    Continue Shopping
+  </a>
 </div>
 
 {% endblock %}
