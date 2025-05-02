@@ -20,5 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('', include("PMS_Marketplace.urls")),
     path("dashboard/", include("PMS_Admin.urls", namespace="dashboard")),
-    path('accounts/', include('PMS_Accounts.urls'))#, path('admin/', admin.site.urls)
+    path('accounts/', include('PMS_Accounts.urls')),
+    path('admin/', admin.site.urls)
 ]

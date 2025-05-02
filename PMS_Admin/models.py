@@ -8,6 +8,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price', 'stock')
+    list_display = ('name', 'category', 'price', 'stock', 'image_url', 'expiry_date')
 
 # You can similarly register User and Order if needed
