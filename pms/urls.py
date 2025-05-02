@@ -19,7 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include("PMS_Marketplace.urls")),
-    path('admin_panel/', include("PMS_Admin.urls")),
-    path('accounts/', include("PMS_accounts.urls")),
     path('admin/', admin.site.urls)
 ]
