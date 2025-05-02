@@ -6,8 +6,8 @@ from PMS_Marketplace.models import Category, Product, User, Order
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
 
-
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'price', 'stock')
 
+# You can similarly register User and Order if needed

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# AUTH_USER_MODEL = 'PMS_Admin.User'
 
 # Application definition
 
@@ -42,12 +42,8 @@ INSTALLED_APPS = [
     # Other apps...
     'PMS_Admin',
     'PMS_Marketplace',
-    'PMS_accounts',
-
+    'PMS_Accounts'
 ]
-
-AUTH_USER_MODEL = 'PMS_accounts.User'
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,10 +69,20 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # <— add this line
     },
 ]
 
+
+# Static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),  # <— shared static folder
+]
+STATIC_URL = '/static/'  # already present
+
+
 WSGI_APPLICATION = 'pms.wsgi.application'
+AUTH_USER_MODEL = 'PMS_Accounts.User'
 
 
 # Database
