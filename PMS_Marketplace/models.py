@@ -16,7 +16,7 @@ class Category(models.Model):
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50, unique=True)
-    category = models.ManyToManyField(Category)
+    category = models.OneToOneField(Category, on_delete=models.CASCADE, default=None)
     price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='products/', blank=True, null=True)

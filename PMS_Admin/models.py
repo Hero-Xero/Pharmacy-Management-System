@@ -7,10 +7,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
 
 
-# ERROR: 
-# <class 'PMS_Admin.models.ProductAdmin'>: (admin.E109) The value of 'list_display[1]' must not be a many-to-many field or a reverse foreign key.
-
-# @admin.register(Product)
-# class ProductAdmin(admin.ModelAdmin):
-#     list_display = ('name', 'category', 'price', 'stock')
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'price', 'stock')
 

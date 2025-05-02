@@ -10,7 +10,7 @@ from django.db import transaction
 def register_client(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
-        client_form = ClientForm(request.POST)
+        client_form = ClientRegistrationForm(request.POST)
 
         # Ensure both forms are valid
         if user_form.is_valid() and client_form.is_valid():
@@ -41,7 +41,7 @@ def register_client(request):
 
     else:
         user_form = UserRegistrationForm()
-        client_form = ClientForm()
+        client_form = ClientRegistrationForm()
 
     return render(request, 'accounts/register.html', {'user_form': user_form, 'client_form': client_form})
 

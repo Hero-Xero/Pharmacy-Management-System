@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- <link rel="stylesheet" href="{% static 'style.css' %}"/> -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
 </head>
 <body>
 
+  <div class="header"></div>
  
   <div class="header">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUT4NhltYojT7X27fXXc4G_B4uljKUogHGZg&s" alt="Logo" class="logo">
@@ -63,6 +64,14 @@
   <hr>
 
   
+
+
+  <div class="links">
+    <a href="{% url 'add_product' %}" class="link">Add Product</a>
+    <a href="{% url 'add_category' %}" class="link">Add Category</a>
+  </div>
+
+
   <div class="buttons">
     <button onclick="action('invoice')"><img src="images/downlnew invoice.jpeg">Create New Invoice</button>
     <button onclick="action('add_customer')"><img src="images/ggg.jpeg">Add New Customer</button>
@@ -74,6 +83,6 @@
   </div>
 
   
-  <script src="script.js"></script>
+  <!-- <script src="script.js"></script> -->
 </body>
 </html>

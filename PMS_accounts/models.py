@@ -9,7 +9,7 @@ class User(AbstractUser):
     def is_client(self):
         return not self.is_staff
 
-    def is_manager(self):
+    def is_admin(self):
         return self.is_staff
 
     def save(self, *args, **kwargs):

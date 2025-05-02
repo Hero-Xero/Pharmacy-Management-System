@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Product</title>
+    <title>Add Category</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" href="{% static 'PMS_Admin/css/admin_styles.css' %}">
@@ -10,7 +10,6 @@
 <body>
 
 <div class="header">
-    <!-- <img src="{% static 'admin/images/logo.png' %}" alt="Logo" class="logo"> -->
     <div>
         <h1>Add New Category</h1>
         <h2>Enter category name and details</h2>
@@ -18,12 +17,12 @@
 </div>
 
 <div class="box report">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post">
         {% csrf_token %}
         <div class="form-wrapper">
             {{ form.as_p }}
         </div>
-        <button type="submit">Save Product</button>
+        <button type="submit">Save Category</button>
     </form>
 </div>
 

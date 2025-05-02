@@ -9,7 +9,7 @@ def is_admin_user(user):
 @login_required
 @user_passes_test(is_admin_user)
 def index(request):
-    return render(request, 'admin/index.html')
+    return render(request, 'index.html')
 
 @login_required
 @user_passes_test(is_admin_user)
@@ -18,11 +18,11 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('product_list')  # Adjust this to your actual route
+            return redirect('index')  # Adjust this to your actual route
     else:
         form = ProductForm()
-    return render(request, 'admin/add_product.html', {'form': form})
-    
+    return render(request, 'add_product.html', {'form': form})
+
 
 @login_required
 @user_passes_test(is_admin_user)
@@ -31,7 +31,7 @@ def add_category(request):
         form = CategoryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('category_list')  # Adjust this to your actual route
+            return redirect('index')  # Adjust this to your actual route
     else:
         form = CategoryForm()
-    return render(request, 'admin/add_category.html', {'form': form})
+    return render(request, 'add_category.html', {'form': form})
