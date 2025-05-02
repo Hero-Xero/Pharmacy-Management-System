@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from PMS_Marketplace.models import Category, Product
+from django.http import Http404
+
 
 # Create your views here.
 def index(request):
@@ -8,7 +11,16 @@ def cart(request):
     return render(request, "cart.html")
 
 def category(request, name):
-    name = name.replace("_", " ").title()
+    formatted_name = name.replace("_", " ").lower()
+
+    try:
+        category = Category.objects.get(name=formatted_name)
+    except Category.DoesNotExist:
+        raise Http404("Category not found")
+
+    products = Product.objects.filter(category=category)
+
     return render(request, "category.html", {
-        "category_name": name
+        "category_name": category.name.title(),
+        "products": products
     })

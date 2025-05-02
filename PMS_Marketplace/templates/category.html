@@ -1,6 +1,5 @@
-{% extends "layout.html" %} {% load static %} {% block title %}Category -
-{{category_name }} {%endblock %} {% block content %}
-
+{% extends "layout.html" %} {% load static %} {% block title %} Category - 
+{{category_name }} {% endblock %} {% block content %}
 <script src="{% static 'js/filters.js' %}"></script>
 
 <div class="category-header">
@@ -12,7 +11,6 @@
   <div class="filter-section">
     <div class="filter-title">Sort & Filter</div>
 
-    <!-- Price Filter -->
     <h5>Filter By Price</h5>
     <div class="price-slider">
       <input
@@ -38,7 +36,6 @@
     </div>
     <p>Selected Range: <span id="priceValue">100 - 2000</span> EGP</p>
 
-    <!-- Sort By -->
     <label for="sort-by" class="form-label">
       <h5>Sort By</h5>
     </label>
@@ -54,44 +51,29 @@
 
   <!-- Products Section -->
   <div class="products-container">
-    {# Example static product - replace with a loop when dynamic data is used #}
+    {% for product in products %}
     <div class="card">
       <img
-        src="{% static 'images/clinique-dramatically-different-moisturizing-gel-with-pump-125ml-409463.webp' %}"
-        class="card-img-top"
-        alt="Clinique Moisturizer"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Clinique</h5>
-        <p class="card-text">
-          Clinique Dramatically Different Moisturizing Gel With Pump - 125ml
-        </p>
-        <p class="price">EGP 1,590.00</p>
-        <button class="add-to-Cart-btn">
-          <i class="fas fa-shopping-cart"></i> ADD TO CART
-        </button>
-      </div>
-    </div>
-
-    {# Uncomment and use this structure to loop over real product data #} {#
-    {%for product in products %}
-    <div class="card">
-      <img
-        src="{{ product.image.url }}"
+        src="{{ product.image_url }}"
         class="card-img-top"
         alt="{{ product.name }}"
       />
       <div class="card-body">
-        <h5 class="card-title">{{ product.brand }}</h5>
+        <h5 class="card-title">{{ product.name }}</h5>
         <p class="card-text">{{ product.description }}</p>
         <p class="price">EGP {{ product.price }}</p>
-        <button class="add-to-Cart-btn">
-          <i class="fas fa-shopping-cart"></i> ADD TO CART
-        </button>
+        <form method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value="{{ product.id }}" />
+          <button class="add-to-Cart-btn">
+            <i class="fas fa-shopping-cart"></i> ADD TO CART
+          </button>
+        </form>
       </div>
     </div>
-    {% endfor %} #}
+    {% empty %}
+    <p>No products available in this category.</p>
+    {% endfor %}
   </div>
 </div>
-
 {% endblock %}
