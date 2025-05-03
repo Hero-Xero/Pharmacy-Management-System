@@ -1,5 +1,5 @@
-{% extends "layout.html" %} {% load static %} {% block title %}Category - 
-{{ category_name }}{% endblock %} {% block content %}
+{% extends "layout.html" %} {% load static %} {% block title %}Category - {{
+category_name }}{% endblock %} {% block content %}
 
 <div class="category-header">
   <h1>{{ category_name }}</h1>
@@ -123,20 +123,22 @@
         card.className = "card";
 
         card.innerHTML = `
-          <img src="${product.image_url}" class="card-img-top" alt="${product.name}" />
-          <div class="card-body">
-            <h5 class="card-title">${product.name}</h5>
-            <p class="card-text">${product.description}</p>
-            <p class="price">EGP ${product.price}</p>
-            <form method="POST" action="/marketplace/add_item/${product.id}/">
-              {% csrf_token %}
-              <input type="hidden" name="product_id" value="${product.id}" />
-              <input type="hidden" name="category_name" value="${product.category_name}" />
-              <button class="add-to-Cart-btn">
-                <i class="fas fa-shopping-cart"></i> ADD TO CART
-              </button>
-            </form>
-          </div>
+          <a href="/product/${product.id}/" class="product-link">
+            <img src="${product.image_url}" class="card-img-top" alt="${product.name}" />
+            <div class="card-body">
+              <h5 class="card-title">${product.name}</h5>
+              <p class="card-text">${product.description}</p>
+              <p class="price">EGP ${product.price}</p>
+            </div>
+          </a>
+          <form method="POST" action="/add_to_cart/${product.id}/">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="${product.id}" />
+            <input type="hidden" name="category_name" value="${product.category_name}" />
+            <button class="add-to-Cart-btn">
+              <i class="fas fa-shopping-cart"></i> ADD TO CART
+            </button>
+          </form>
         `;
         productContainer.appendChild(card);
       }
