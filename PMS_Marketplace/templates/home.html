@@ -8,9 +8,11 @@
     <h2>Your Health, Our Priority</h2>
     <p>Quality medicines and healthcare products at your fingertips</p>
     <div class="banner-buttons">
-      <button class="shop-now-btn">
-        <i class="fas fa-shopping-cart"></i> Shop Now
-      </button>
+      <a href="{% url 'marketplace:category' name='all' %}">
+        <button class="shop-now-btn">
+          <i class="fas fa-shopping-cart"></i> Shop Now
+        </button>
+      </a>
     </div>
   </div>
 </section>
@@ -37,7 +39,7 @@
   <h2 class="section-title">Our Categories</h2>
   <div class="categories-grid">
     {% comment %} First Row {% endcomment %}
-    <div class="category-card">
+    <a href="{% url 'marketplace:category' 'Men' %}" class="category-card">
       <img
         src="{% static 'images/men care.png' %}"
         alt="Men's Products"
@@ -50,8 +52,12 @@
           essentials.
         </p>
       </div>
-    </div>
-    <div class="category-card">
+    </a>
+
+    <a
+      href="{% url 'marketplace:category' 'Hair Care' %}"
+      class="category-card"
+    >
       <img
         src="{% static 'images/hair care.png' %}"
         alt="Hair Care"
@@ -64,23 +70,27 @@
           treatments.
         </p>
       </div>
-    </div>
-    <div class="category-card">
+    </a>
+
+    <a
+      href="{% url 'marketplace:category' 'Skin Care' %}"
+      class="category-card"
+    >
       <img
-        src="{% static 'images/health care.png' %}"
-        alt="Health Care"
+        src="{% static 'images/skin care.png' %}"
+        alt="Skin Care"
         class="category-img"
       />
       <div class="category-content">
-        <h3>Health Care</h3>
+        <h3>Skin Care</h3>
         <p>
-          Find medical supplies, first aid kits, and health monitoring devices.
+          Discover our range of skincare products for glowing, healthy skin.
         </p>
       </div>
-    </div>
+    </a>
 
     {% comment %} Second Row {% endcomment %}
-    <div class="category-card">
+    <a href="{% url 'marketplace:category' 'Women' %}" class="category-card">
       <img
         src="{% static 'images/women care.png' %}"
         alt="Women's Products"
@@ -93,8 +103,9 @@
           personal care items.
         </p>
       </div>
-    </div>
-    <div class="category-card">
+    </a>
+
+    <a href="{% url 'marketplace:category' 'Baby' %}" class="category-card">
       <img
         src="{% static 'images/baby care.jpg' %}"
         alt="Baby Care"
@@ -107,8 +118,9 @@
           care products.
         </p>
       </div>
-    </div>
-    <div class="category-card">
+    </a>
+
+    <a href="{% url 'marketplace:category' 'Drugs' %}" class="category-card">
       <img
         src="{% static 'images/drugs.png' %}"
         alt="Prescription Drugs"
@@ -120,93 +132,7 @@
           Access a wide range of prescription and over-the-counter medications.
         </p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Best Sellers Section -->
-<section class="best-sellers-section">
-  <h2 class="section-title">Best Sellers</h2>
-  <div class="products-container">
-    <div class="card">
-      <img
-        src="{% static 'images/cerave-eye-repair-cream-14ml-137958.webp' %}"
-        class="card-img-top"
-        alt="Cerave"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Cerave</h5>
-        <p class="card-text">Cerave Eye Repair Cream - 14ml</p>
-        <p class="price">EGP 454.09</p>
-        <button class="add-to-Cart-btn">
-          <i class="fas fa-shopping-cart"></i> ADD TO CART
-        </button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img
-        src="{% static 'images/vaseline-lip-therapy-rosy-tinted-lip-balm-10gm-632415.webp' %}"
-        class="card-img-top"
-        alt="Vaseline"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Vaseline</h5>
-        <p class="card-text">Rosy Tinted Lip Balm - 10g</p>
-        <p class="price">EGP 120.00</p>
-        <button class="add-to-Cart-btn">
-          <i class="fas fa-shopping-cart"></i> ADD TO CART
-        </button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img
-        src="{% static 'images/raw-african-follicle-booster-oil-100ml-107474.webp' %}"
-        class="card-img-top"
-        alt="Booster Oil"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Raw African</h5>
-        <p class="card-text">Follicle Booster Oil - 100ml</p>
-        <p class="price">EGP 265.00</p>
-        <button class="add-to-Cart-btn">
-          <i class="fas fa-shopping-cart"></i> ADD TO CART
-        </button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img
-        src="{% static 'images/loreal-professional-absolut-repair-quinoa-protein-shampoo-300ml-222167.webp' %}"
-        class="card-img-top"
-        alt="L'Oreal"
-      />
-      <div class="card-body">
-        <h5 class="card-title">L'Oreal</h5>
-        <p class="card-text">Absolut Repair Quinoa + Protein Shampoo</p>
-        <p class="price">EGP 850.00</p>
-        <button class="add-to-Cart-btn">
-          <i class="fas fa-shopping-cart"></i> ADD TO CART
-        </button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img
-        src="{% static 'images/la-roche-posay-hyalu-b5-serum-30ml-338408.webp' %}"
-        class="card-img-top"
-        alt="La Roche"
-      />
-      <div class="card-body">
-        <h5 class="card-title">La Roche</h5>
-        <p class="card-text">Hyalu B5 Serum - 30ml</p>
-        <p class="price">EGP 600.00</p>
-        <button class="add-to-Cart-btn">
-          <i class="fas fa-shopping-cart"></i> ADD TO CART
-        </button>
-      </div>
-    </div>
+    </a>
   </div>
 </section>
 

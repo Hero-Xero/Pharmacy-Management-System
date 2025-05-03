@@ -1,19 +1,37 @@
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from PMS_Marketplace.models import Category, Product, Cart, CartItem, Order
 from PMS_Accounts.models import User
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
     return render(request, "home.html")
 
 
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'product.html', {'product': product})
+
+
 # View to handle product category page
 def category(request, name):
     formatted_name = name.replace("_", " ").lower()
+    search_query = request.GET.get('q', '')
+
+    if formatted_name == "all":
+        products = Product.objects.all()
+        if search_query:
+            products = products.filter(
+                Q(name__icontains=search_query) | Q(description__icontains=search_query)
+            )
+        return render(request, "category.html", {
+            "category_name": "All Categories",
+            "products": products
+        })
 
     try:
         category = Category.objects.get(name=formatted_name)
@@ -21,6 +39,11 @@ def category(request, name):
         raise Http404("Category not found")
 
     products = Product.objects.filter(category=category)
+
+    if search_query:
+        products = products.filter(
+            Q(name__icontains=search_query) | Q(description__icontains=search_query)
+        )
 
     return render(request, "category.html", {
         "category_name": category.name.title(),
@@ -61,7 +84,7 @@ def add_item_to_cart(request, product_id):
             cart_item.quantity += 1  # Increment if exists
         cart_item.save()
 
-        return redirect('marketplace:category', name=request.POST.get("category_name").replace(" ", "_"))
+        return redirect('marketplace:category', name=request.POST.get("category_name", "all").replace(" ", "_"))
 
 
 # View to handle the cart page

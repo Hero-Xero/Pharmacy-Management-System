@@ -1,41 +1,39 @@
-{% extends "layout.html" %} {% load static %} {% block title %}Category -
-{{category_name}}{% endblock %} {% block content %}
-
-<script src="{% static 'js/filters.js' %}"></script>
+{% extends "layout.html" %} {% load static %} {% block title %}Category - {{
+category_name }}{% endblock %} {% block content %}
 
 <div class="category-header">
   <h1>{{ category_name }}</h1>
 </div>
 
-<div class="category-page-container">
+<!-- Embed products data into JS array using Django for loop -->
+<script>
+  const productData = [
+    {% for product in products %}
+      {
+        id: {{ product.id }},
+        name: "{{ product.name|escapejs }}",
+        description: "{{ product.description|escapejs }}",
+        price: {{ product.price }},
+        image_url: "{{ product.image_url|escapejs }}",
+        category_name: "{{ category_name|lower|escapejs }}"
+      }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ];
+</script>
+
+<div class="category-container">
   <!-- Filter and Sort Section -->
   <div class="filter-section">
     <div class="filter-title">Sort & Filter</div>
 
     <h5>Filter By Price</h5>
     <div class="price-slider">
-      <input
-        type="range"
-        class="form-range"
-        min="100"
-        max="2000"
-        step="10"
-        id="minPriceRange"
-        value="100"
-        oninput="updatePrice()"
-      />
-      <input
-        type="range"
-        class="form-range"
-        min="100"
-        max="2000"
-        step="10"
-        id="maxPriceRange"
-        value="2000"
-        oninput="updatePrice()"
-      />
+      <div class="slider-track"></div>
+      <div class="slider-fill" id="sliderFill"></div>
+      <input type="range" id="minPriceRange" step="10" />
+      <input type="range" id="maxPriceRange" step="10" />
     </div>
-    <p>Selected Range: <span id="priceValue">100 - 2000</span> EGP</p>
+    <p>Selected Range: <span id="priceValue">-</span> EGP</p>
 
     <label for="sort-by" class="form-label">
       <h5>Sort By</h5>
@@ -51,40 +49,124 @@
   </div>
 
   <!-- Products Section -->
-  <div class="products-container">
-    {% for product in products %}
-    <div class="card">
-      <img
-        src="{{ product.image_url }}"
-        class="card-img-top"
-        alt="{{ product.name }}"
-      />
-      <div class="card-body">
-        <h5 class="card-title">{{ product.name }}</h5>
-        <p class="card-text">{{ product.description }}</p>
-        <p class="price">EGP {{ product.price }}</p>
-
-        <form
-          method="POST"
-          action="{% url 'marketplace:add_item' product.id %}"
-        >
-          {% csrf_token %}
-          <input type="hidden" name="product_id" value="{{ product.id }}" />
-          <input
-            type="hidden"
-            name="category_name"
-            value="{{ category_name|lower }}"
-          />
-          <button class="add-to-Cart-btn">
-            <i class="fas fa-shopping-cart"></i> ADD TO CART
-          </button>
-        </form>
-      </div>
-    </div>
-    {% empty %}
-    <p>No products available in this category.</p>
-    {% endfor %}
+  <div class="products-container" id="productsContainer">
+    <!-- JS will populate this -->
   </div>
 </div>
+
+<!-- Inline Script to Handle Filtering, Sorting, and Rendering -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sortSelect = document.getElementById("sort-by");
+    const minRange = document.getElementById("minPriceRange");
+    const maxRange = document.getElementById("maxPriceRange");
+    const priceValueDisplay = document.getElementById("priceValue");
+    const productContainer = document.getElementById("productsContainer");
+
+    const prices = productData.map((p) => p.price);
+    const minPriceValue = Math.min(...prices);
+    const maxPriceValue = Math.max(...prices);
+
+    minRange.min = minPriceValue;
+    minRange.max = maxPriceValue;
+    minRange.value = minPriceValue;
+
+    maxRange.min = minPriceValue;
+    maxRange.max = maxPriceValue;
+    maxRange.value = maxPriceValue;
+
+    function updatePrice() {
+      const min = parseInt(minRange.value);
+      const max = parseInt(maxRange.value);
+      priceValueDisplay.textContent = `${min} - ${max}`;
+      filterAndSort();
+    }
+
+    function filterAndSort() {
+      const min = parseInt(minRange.value);
+      const max = parseInt(maxRange.value);
+      const sort = sortSelect.value;
+
+      let filtered = productData.filter(
+        (p) => p.price >= min && p.price <= max
+      );
+
+      switch (sort) {
+        case "Alphabetically, A-Z":
+          filtered.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+        case "Alphabetically, Z-A":
+          filtered.sort((a, b) => b.name.localeCompare(a.name));
+          break;
+        case "Price, low to high":
+          filtered.sort((a, b) => a.price - b.price);
+          break;
+        case "Price, high to low":
+          filtered.sort((a, b) => b.price - a.price);
+          break;
+      }
+
+      renderProducts(filtered);
+    }
+
+    function renderProducts(products) {
+      productContainer.innerHTML = "";
+
+      if (products.length === 0) {
+        productContainer.innerHTML =
+          "<p>No products available in this category.</p>";
+        return;
+      }
+
+      for (const product of products) {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+          <a href="/product/${product.id}/" class="product-link">
+            <img src="${product.image_url}" class="card-img-top" alt="${product.name}" />
+            <div class="card-body">
+              <h5 class="card-title">${product.name}</h5>
+              <p class="card-text">${product.description}</p>
+              <p class="price">EGP ${product.price}</p>
+            </div>
+          </a>
+          <form method="POST" action="/add_to_cart/${product.id}/">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="${product.id}" />
+            <input type="hidden" name="category_name" value="${product.category_name}" />
+            <button class="add-to-Cart-btn">
+              <i class="fas fa-shopping-cart"></i> ADD TO CART
+            </button>
+          </form>
+        `;
+        productContainer.appendChild(card);
+      }
+    }
+
+    const sliderFill = document.getElementById("sliderFill");
+    const min = parseInt(minRange.min);
+    const max = parseInt(maxRange.max);
+
+    const minVal = parseInt(minRange.value);
+    const maxVal = parseInt(maxRange.value);
+
+    const range = max - min;
+
+    const left = ((minVal - min) / range) * 100;
+    const right = ((maxVal - min) / range) * 100;
+
+    sliderFill.style.left = left + "%";
+    sliderFill.style.width = right - left + "%";
+
+    // Initialize
+    updatePrice();
+
+    // Event Listeners
+    minRange.addEventListener("input", updatePrice);
+    maxRange.addEventListener("input", updatePrice);
+    sortSelect.addEventListener("change", filterAndSort);
+  });
+</script>
 
 {% endblock %}
