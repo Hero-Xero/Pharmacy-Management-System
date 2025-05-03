@@ -15,6 +15,13 @@ def index(request):
 def category(request, name):
     formatted_name = name.replace("_", " ").lower()
 
+    if formatted_name == "all":
+        products = Product.objects.all()
+        return render(request, "category.html", {
+            "category_name": "All Categories",
+            "products": products
+        })
+
     try:
         category = Category.objects.get(name=formatted_name)
     except Category.DoesNotExist:
