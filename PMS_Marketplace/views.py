@@ -5,6 +5,7 @@ from PMS_Marketplace.models import Category, Product, Cart, CartItem, Order
 from PMS_Accounts.models import User
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
@@ -14,9 +15,14 @@ def index(request):
 # View to handle product category page
 def category(request, name):
     formatted_name = name.replace("_", " ").lower()
+    search_query = request.GET.get('q', '')
 
     if formatted_name == "all":
         products = Product.objects.all()
+        if search_query:
+            products = products.filter(
+                Q(name__icontains=search_query) | Q(description__icontains=search_query)
+            )
         return render(request, "category.html", {
             "category_name": "All Categories",
             "products": products
@@ -28,6 +34,11 @@ def category(request, name):
         raise Http404("Category not found")
 
     products = Product.objects.filter(category=category)
+
+    if search_query:
+        products = products.filter(
+            Q(name__icontains=search_query) | Q(description__icontains=search_query)
+        )
 
     return render(request, "category.html", {
         "category_name": category.name.title(),

@@ -28,8 +28,18 @@
         </div>
         <div class="nav-right">
           <div class="search-container">
-            <input type="text" placeholder="Search medicines, products..." />
-            <button type="submit"><i class="fas fa-search"></i></button>
+            <form
+              method="GET"
+              action="{% url 'marketplace:category' name='all' %}"
+            >
+              <input
+                type="text"
+                placeholder="Search medicines, products..."
+                name="q"
+                placeholder="Search for products..."
+                class="search-input"
+              />
+            </form>
           </div>
           <a href="{% url 'marketplace:cart' %}" class="cart-icon">
             <i class="fas fa-shopping-cart"></i>
