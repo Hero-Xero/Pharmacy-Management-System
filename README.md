@@ -48,5 +48,6 @@ A comprehensive system designed to streamline pharmacy operations efficiently, e
     ```
 5. Open a pull request.
 
-# Sprints
-Here is all of the tasks: [sprints](https://github.com/ToYoNiX/pharmacy-management-system/blob/mian/Sprints.md)
+## Sprint Information and Documentation
+
+Here are the details for our [Sprints](https://github.com/ToYoNiX/pharmacy-management-system/blob/main/Documentation/Sprints.md), and you can find the [System Specifications](https://github.com/ToYoNiX/pharmacy-management-system/blob/main/Documentation/Specifications.md) as well.

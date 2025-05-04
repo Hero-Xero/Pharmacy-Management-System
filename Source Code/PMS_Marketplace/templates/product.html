@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+  Product - {{ product.name }}
+{% endblock %}
+
+{% block content %}
+<div class="container product-container">
+  <div class="row product-card">
+    <div class="col-lg-6">
+      <div class="product-image-container">
+        <img
+          src="{{ product.image_url }}"
+          alt="{{ product.name }}"
+          class="product-image img-fluid"
+        />
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="product-details">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <div class="d-flex align-items-center mb-2">
+          <div class="stock-status {% if product.stock > 0 %}in-stock{% else %}out-of-stock{% endif %}">
+            <i class="fas fa-check-circle"></i>
+            <span id="stock-text">
+              {% if product.stock > 0 %}
+                In stock
+              {% else %}
+                Out of stock
+              {% endif %}
+            </span>
+          </div>
+          <span class="badge">BESTSELLER</span>
+        </div>
+
+        <div class="product-price">EGP {{ product.price }}</div>
+
+        <p class="product-description">{{ product.description }}</p>
+
+        <div class="btn-group">
+          <form method="POST" action="{% url 'marketplace:add_item' product.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ product.id }}" />
+            <button class="cart-btn" type="submit">
+              <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+          </form>
+        </div>
+
+        <div class="product-meta mt-3">
+          <div class="meta-item">
+            <i class="fas fa-truck"></i>
+            <span>Free delivery on orders over EGP 500</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-undo"></i>
+            <span>30-day easy returns</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>100% authentic products</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

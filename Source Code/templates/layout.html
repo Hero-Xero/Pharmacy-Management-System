@@ -1,0 +1,163 @@
+{% load static %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PMS: {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+      <div class="nav-content">
+        <div class="nav-left">
+          <div class="logo">
+            <h1><i class="fas fa-pills"></i>PharmaCare</h1>
+          </div>
+          <div class="nav-links">
+            <a href="{% url 'marketplace:home' %}">Home</a>
+            <a href="{% url 'marketplace:home' %}#about">About</a>
+            <a href="{% url 'marketplace:home' %}#services">Services</a>
+            <a href="{% url 'marketplace:home' %}#footer">Contact</a>
+          </div>
+        </div>
+        <div class="nav-right">
+          <div class="search-container">
+            <form
+              method="GET"
+              action="{% url 'marketplace:category' name='all' %}"
+            >
+              <input
+                type="text"
+                placeholder="Search medicines, products..."
+                name="q"
+                placeholder="Search for products..."
+                class="search-input"
+              />
+            </form>
+          </div>
+          <a href="{% url 'marketplace:cart' %}" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'account:logout' %}" class="login-btn">
+            <i class="fas fa-user"></i>
+            <span>Logout</span>
+          </a>
+          {% if user.is_authenticated and user.is_staff %}
+          <a href="{% url 'dashboard:home' %}" class="login-btn">
+            <i class="fas fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+          {% endif %} {% else %}
+          <a href="{% url 'account:login' %}" class="login-btn">
+            <i class="fas fa-user"></i>
+            <span>Login</span>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main>{% block content %}{% endblock %}</main>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+      <div class="footer-content">
+        <!-- About Section -->
+        <div class="footer-section">
+          <div class="footer-logo">
+            <h3><i class="fas fa-pills"></i> PharmaCare</h3>
+          </div>
+          <p class="footer-about">
+            Your trusted partner in healthcare, providing quality medicines and
+            professional services since 1995.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li>
+              <a href="{% url 'marketplace:home' %}"
+                ><i class="fas fa-chevron-right"></i> Home</a
+              >
+            </li>
+            <li>
+              <a href="{% url 'marketplace:home' %}#about"
+                ><i class="fas fa-chevron-right"></i> About Us</a
+              >
+            </li>
+            <li>
+              <a href="{% url 'marketplace:home' %}#services"
+                ><i class="fas fa-chevron-right"></i> Services</a
+              >
+            </li>
+            <li>
+              <a href="{% url 'marketplace:category' name='all' %}"
+                ><i class="fas fa-chevron-right"></i> Products</a
+              >
+            </li>
+            <li>
+              <a href="{% url 'marketplace:home' %}#footer"
+                ><i class="fas fa-chevron-right"></i> Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-section">
+          <h4>Contact Us</h4>
+          <ul class="contact-info">
+            <li>
+              <i class="fas fa-map-marker-alt"></i> 123 Health Street, Medical
+              City
+            </li>
+            <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+            <li><i class="fas fa-envelope"></i> info@pharmacare.com</li>
+            <li><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 9:00 PM</li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-section">
+          <h4>Newsletter</h4>
+          <p>Subscribe to our newsletter for health tips and special offers</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" />
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+          </form>
+          <div class="payment-methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-paypal"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; 2024 PharmaCare. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
