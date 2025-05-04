@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from PMS_Marketplace.models import Category, Product, Cart, CartItem, Order
@@ -84,7 +83,7 @@ def add_item_to_cart(request, product_id):
             cart_item.quantity += 1  # Increment if exists
         cart_item.save()
 
-        return redirect('marketplace:category', name=request.POST.get("category_name", "all").replace(" ", "_"))
+        return redirect('marketplace:cart')
 
 
 # View to handle the cart page
@@ -122,9 +121,13 @@ def checkout(request):
     cart = Cart.objects.filter(user=request.user).first()
 
     if not cart:
-        return redirect('cart')  # No cart found, redirect to cart page
+        return redirect('marketplace:cart')
 
     cart_items = CartItem.objects.filter(cart=cart)
+
+    if len(cart_items) == 0:
+        return redirect('marketplace:cart')
+
     subtotal = sum(item.product.price * item.quantity for item in cart_items)
     shipping_cost = 50  # Example shipping cost
     total = subtotal + shipping_cost
