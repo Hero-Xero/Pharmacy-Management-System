@@ -7,7 +7,7 @@ This document outlines the development and features of the **Pharmacy Management
 
 ### **Overview of the Pharmacy Management System**
 
-![[Pasted image 20250503122229.png]]
+![Home Page](https://github.com/ToYoNiX/pharmacy-management-system/blob/main/Pasted image 20250503122229.png?raw=true)
 
 The Pharmacy Management System (PMS) is designed to streamline and optimize various pharmacy operations. The system is built using the **Django** framework for backend development, with **HTML**, **CSS**, and **JavaScript** powering the frontend. It uses **SQLite3** as the database engine to provide a lightweight yet reliable data management solution.
 
@@ -62,23 +62,24 @@ The following features are accessible to all users of the system:
 1. **Search for Products**:
     
     - Users can search for specific medicines or products by name or category.
-        ![[Pasted image 20250503122319.png]]
+        ![Search](https://github.com/ToYoNiX/pharmacy-management-system/blob/main/Pasted image 20250503122319.png?raw=true)
+
 2. **View Categories**:
     
     - Users can view available categories of medicines.
-        ![[Pasted image 20250503122357.png]]
+        ![Categories](https://github.com/ToYoNiX/pharmacy-management-system/blob/main/Pasted image 20250503122357.png?raw=true)
 3. **Add to Cart**:
     
     - Users can add selected items to their shopping cart.
-        ![[Pasted image 20250503122414.png]]
+        ![Add to Cart](https://github.com/ToYoNiX/pharmacy-management-system/blob/main/Pasted image 20250503122414.png?raw=true)
 4. **Update Cart Items**:
     
     - Users can modify the quantity of items in their cart or remove them.
-        ![[Pasted image 20250503122437.png]]
+        ![Update Cart](https://github.com/ToYoNiX/pharmacy-management-system/blob/main/Pasted image 20250503122437.png?raw=true)
 5. **Login and Register**:
     
     - Users can register for an account or log in to access personalized features such as viewing their cart and placing orders.
-        ![[Pasted image 20250503122448.png]]
+        ![Login and Register](https://github.com/ToYoNiX/pharmacy-management-system/blob/main/Pasted image 20250503122448.png?raw=true)
 
 ---
 
@@ -86,16 +87,16 @@ The following features are accessible to all users of the system:
 
 The following features are exclusive to administrators:
 
-![[Pasted image 20250503122701.png]]
+![Admin Dashboard](https://github.com/ToYoNiX/pharmacy-management-system/blob/main/Pasted image 20250503122701.png?raw=true)
 
 1. **Add Category**:
     
     - Admins can create new categories to organize products.
-        ![[Pasted image 20250503122724.png]]
+        ![Add Category](https://github.com/ToYoNiX/pharmacy-management-system/blob/main/Pasted image 20250503122724.png?raw=true)
 2. **Add Product**:
     
     - Admins can add new products to the inventory, including product details such as price, description, and stock level.
-        ![[Pasted image 20250503122716.png]]
+        ![Add Product](https://github.com/ToYoNiX/pharmacy-management-system/blob/main/Pasted image 20250503122716.png?raw=true)
 
 ---
 
